@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #d1e3f5;">
+    <div class="container">
+      <a class="navbar-brand" href="/">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link <%= path === '/' ? 'active' : ''%>" aria-current="page" href="/">Home</a>
+          </li>
+          
+          <%if(isAuthenticated){%>
+            <li class="nav-item">
+              <a class="nav-link <%= path === '/addProduct' ? 'active' : ''%>"" aria-current="page" href="/addProduct">Add Product</a>
+            </li>
+            
+          <li class="nav-item">
+            <a class="nav-link <%= path === '/logout' ? 'active' : ''%>" aria-current="page" href="/logout">Logout</a>
+          </li>
+          <%}%>
+          
+          <%if(!isAuthenticated){%>
+          <li class="nav-item">
+            <a class="nav-link toggle <%= path === '/signup' ? 'active' : ''%>" aria-current="page" href="/signup">Registration</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link <%= path === '/login' ? 'active' : ''%>" aria-current="page" href="/login">Login</a>
+          </li>
+
+          <!-- <li class="nav-item">
+            <a class="nav-link <%= path === '/logout' ? 'active' : ''%>" aria-current="page" href="/logout">Logout</a>
+          </li> -->
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="productDetails">view</a>
+          </li> -->
+          <%}%>
+
+          <li class="nav-item">
+            <a class="nav-link <%= path === '/cart' ? 'active' : ''%>" aria-current="page" href="/cart">Cart</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              View
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item" href="/productDetails">Admin Products</a>
+              </li>
+              <li><a class="dropdown-item" href="/userproduct">user product</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/">Something else here</a></li>
+            </ul>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>

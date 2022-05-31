@@ -1,0 +1,36 @@
+
+
+.back{
+    color: black;
+}
+
+span{
+    color: red;
+}
+
+p{
+    padding-left: 200px;
+    /* padding-top: 50px; */
+}
+
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    color: gray;
+}
+/* button{
+    color: blue !important;
+}
+button:hover{
+    color:gray !important;
+} */
+
+.active{
+    color: blue !important;
+}
+
+img{
+    width: 80px;
+}

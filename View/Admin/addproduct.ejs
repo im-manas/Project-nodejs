@@ -1,0 +1,45 @@
+<%-include('../Includes/header.ejs')%>
+</head>
+<body>
+    <%-include('../Includes/navigation.ejs')%>
+    
+<br>
+    <div class="form">
+        <div class="card" style="width: 400px; margin: auto; border-color: blue;">
+          
+          <div class="card-header text-center" style="background-color: #76f5ec;">
+            
+            <h5 class="card-title" >Add Products</h5>
+          </div>
+    
+          <form action="/productData" method="POST" enctype="multipart/form-data">
+           
+            <div class=" mb-3 container">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Product Title<span>*</span></label>
+                <input type="text" class="form-control" name="title" placeholder="Enter Title" required>
+              </div>
+    
+           <div class="mb-3">
+               <label for="exampleFormControlInput1" class="form-label">Product Price<span>*</span></label>
+               <input type="text" class="form-control" name="price" placeholder="Product price" required>
+              </div>
+    
+           <div class="mb-3">
+               <label for="exampleFormControlInput1" class="form-label">Description</label>
+               <input type="text" class="form-control" name="description" placeholder="Description" required>
+           </div>
+
+           <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Product image</label>
+            <input type="file" class="form-control" name="p_image" required>
+           </div>
+               <input type="submit" class="btn btn-outline-primary" value="Add" style="width: 7rem; margin-left: 35%;">
+          </div>
+        </form>
+        </div>
+      </div>
+<br>
+
+   
+<%-include('../Includes/footer.ejs')%>

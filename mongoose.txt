@@ -1,0 +1,9 @@
+Mongoose:-
+
+Mongoose is an ODML that is Object Data Modeling Library for mongodb and nodeJS. 
+It manages relationships between data offers a veraity of books, schema validation, model validation and other features end at making it easier to work with mongodb.
+It is used through translate between object in code and the representation of those objects in mongodb, mongodb is a schemaless noSql 
+document database.
+
+
+<input type="hidden" name="_csrf" value="<%=csrf_token%>">

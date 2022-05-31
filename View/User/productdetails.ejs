@@ -1,0 +1,59 @@
+<%-include('../Includes/header.ejs')%>
+</head>
+<%-include('../Includes/navigation.ejs')%>
+
+    <br>
+    
+    
+
+<div class="container mt-5 mb-5">
+  <div class="row d-flex justify-content-center">
+      <div class="col-md-10">
+          <div class="card">
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="images p-3">
+                          <div class="text-center p-4"> <img id="main-image" src="/<%=data.p_image%>" style="width: 500px;"/> </div>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="product p-4">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <div class="d-flex align-items-center">  <span class="ml-1"> <a href="/userproduct"><i class="fa fa-long-arrow-left"></i>Back</a></span> </div> <i class="fa fa-shopping-cart text-muted"></i>
+                          </div>
+                          <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand"><%=data.title%></span>
+                              <h5 class="text-uppercase"><%=data.title%></h5>
+                              <div class="rating">
+                                <div class="stars">
+                                  <span class="fa fa-star checked"></span>
+                                  <span class="fa fa-star checked"></span>
+                                  <span class="fa fa-star checked"></span>
+                                  <span class="fa fa-star"></span>
+                                  <span class="fa fa-star"></span>
+                                </div>
+                               </div>
+                              <div class="price d-flex flex-row align-items-center">Price: <span class="act-price"> <%=data.price%></span>
+                              </div>
+                          </div>
+                          <h6 class="about"> <%=data.description%></h6>
+                          <div class="cart mt-4 align-items-center"> 
+
+
+                            <form action="/add-to-cart" method="POST">
+                                <input type="hidden" name="quantity" value="1">
+                                <input type="hidden" name="productId" value="<%=data.id%>">
+                                <button type="submit" class="btn btn-primary">Add to Cart</button>
+                            </form>
+                            
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+
+
+      <%-include('../Includes/footer.ejs')%>

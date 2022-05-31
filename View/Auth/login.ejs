@@ -1,0 +1,53 @@
+<%-include('../Includes/header.ejs')%>
+</head>
+<body>
+  <%-include('../Includes/navigation.ejs')%>
+    <br>
+    <div class="form" style="padding-top: 100px;"">
+        <div class="card" style="width: 400px; margin: auto; border-color: blue;">
+          <div class="card-header text-center" style="background-color: #76f5ec;">
+            <h5 class="card-title">Login Form</h5>
+          </div>
+
+          
+
+          <%if(errorMsg){%>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <%=errorMsg%>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <%}%>
+
+
+    
+          <form action="/login" method="POST">
+          
+            <div class=" mb-3 container">
+        <div class="mb-3">
+         
+            <label for="exampleFormControlInput1" class="form-label">Email</label>
+            
+            <input type="text" class="form-control" name="email" value="<%if(cookie_data.cookiedata){%><%=cookie_data.cookiedata.email%><%}%>" id="email">
+            
+            </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" placeholder="**********">
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="checked">
+          <label class="form-check-label">
+            Remember me
+          </label>
+        </div>
+        <br>
+        
+               <input type="submit" class="btn btn-outline-primary" value="Signin" style="width: 7rem; margin-left: 35%;">
+          </div>
+        </form>
+        </div>
+      </div>
+<br>
+
+   
+<%-include('../Includes/footer.ejs')%>

@@ -1,0 +1,44 @@
+<%-include('../Includes/header.ejs')%>
+</head>
+<body>
+    <%-include('../Includes/navigation.ejs')%>
+<br>
+
+<br>
+
+<table class="table container">
+    <thead>
+      <tr>
+        <th scope="col">Action</th>
+        <th scope="col">Image</th>
+        <th scope="col">Title</th>
+        
+        <th scope="col">Quantity</th>
+        
+        <th scope="col">price</th>
+      </tr>
+      
+    </thead>
+    <tbody>
+      <%if(data.length>0) {%>
+      <%for(let x of data){%>
+        
+      <tr>
+        <th scope="row">
+            <a onclick="return confirm('Are you want to delete?')" href="/delete-cart/<%=x._id%>">delete</a>
+        </th>
+        <td><img src="<%=x.cart[0].p_image%>" alt="image"></td>
+        <td><%=x.cart[0].title%></td>
+        
+        <td><input style="width: 40px;" type="number" name="quantity" value="<%=x.quantity%>"></td>
+        <td><%=x.cart[0].price%></td>
+      </tr>
+      <%}%>
+    </tbody>
+  </table>
+  <%}else{%>
+    <h1 style="text-align: center;">cart is empty.</h1>
+<%}%>
+
+
+<%-include('../Includes/footer.ejs')%>
