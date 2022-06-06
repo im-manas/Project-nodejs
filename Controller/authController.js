@@ -53,9 +53,6 @@ exports.postregDetails=(req,res)=>{
 }
 
 exports.getLogin=(req,res)=>{
-
-    
-
     let messege=req.flash('error')
     console.log(messege);
     if(messege.length>0)

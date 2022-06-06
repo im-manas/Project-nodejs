@@ -23,7 +23,7 @@ const csrfProtection=csurf();
 
 //ejs setup
 appServer.set('view engine','ejs')
-appServer.set('views','View')
+appServer.set('views','View')       
 
 
 const urlencodedParser = bodyParser.urlencoded({extended: false})
@@ -43,6 +43,7 @@ const storeValue=new mongodb_session({
 })
 //step 3
 appServer.use(session({secret:'manas',resave:false,saveUninitialized:false,store:storeValue}))
+
 appServer.use((req,res,next)=>{
     if(!req.session.user)
     {
@@ -51,7 +52,6 @@ appServer.use((req,res,next)=>{
     authModel.findById(req.session.user._id)
     .then(userValue=>{
         req.user = userValue;
-        //console.log("user details:",req.user);
         next();
     }).catch(err=> console.log("user not found",err))
 });
@@ -71,19 +71,14 @@ appServer.use((req,res,next)=>{
 })
 
 
-
-
-//csrf
-
 //appServer.use(csrfProtection);
-
 appServer.use((req,res,next)=>{
     res.locals.isAuthenticated=req.session.isLoggedIn;
     //res.locals.csrf_token=req.csrfToken();
     next();
 })
 
-//static files setup
+
 appServer.use(express.static(path.join(__dirname,'Public')))
 
 appServer.use('/Uploaded_image',express.static(path.join(__dirname,'Uploaded_image')))

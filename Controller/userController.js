@@ -61,7 +61,7 @@ exports.postAddToCart=(req,res)=>{
         const cartProduct= new cartModel({productId:pId, quantity:quantity, userId:userId, cart:cartValue})
         cartProduct.save()
         .then(result=>{
-            console.log("product add successfully");
+            console.log("product add to cart successfully");
             res.redirect('/cart')
         }).catch(err=>{
             console.log(err);

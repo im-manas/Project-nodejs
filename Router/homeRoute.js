@@ -12,6 +12,7 @@ function sessionChecker(req,res,next){
 }
 
 homeRoute.get('/',home_controller.getHome)
+homeRoute.get('/about',home_controller.getAbout)
 
 
 

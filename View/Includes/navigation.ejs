@@ -9,6 +9,10 @@
           <li class="nav-item">
             <a class="nav-link <%= path === '/' ? 'active' : ''%>" aria-current="page" href="/">Home</a>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link <%= path === '/about' ? 'active' : ''%>" aria-current="page" href="/about">About</a>
+          </li>
           
           <%if(isAuthenticated){%>
             <li class="nav-item">
@@ -29,12 +33,6 @@
             <a class="nav-link <%= path === '/login' ? 'active' : ''%>" aria-current="page" href="/login">Login</a>
           </li>
 
-          <!-- <li class="nav-item">
-            <a class="nav-link <%= path === '/logout' ? 'active' : ''%>" aria-current="page" href="/logout">Logout</a>
-          </li> -->
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="productDetails">view</a>
-          </li> -->
           <%}%>
 
           <li class="nav-item">
