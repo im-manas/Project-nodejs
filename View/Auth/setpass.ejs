@@ -1,0 +1,18 @@
+<%-include('../Includes/header.ejs')%>
+</head>
+<body>
+  <%-include('../Includes/navigation.ejs')%>
+<br><br>
+
+  <form action="/newPassword" method="POST">
+    <label for="email">Enter Password</label>
+    <input type="text" name="n_password">
+    <input type="hidden" name="user_id" value="<%=user_id%>">
+    <input type="submit" value="Submit">
+  </form>
+
+
+
+
+
+  <%-include('../Includes/footer.ejs')%>

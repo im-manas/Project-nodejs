@@ -75,6 +75,7 @@ appServer.use((req,res,next)=>{
 appServer.use((req,res,next)=>{
     res.locals.isAuthenticated=req.session.isLoggedIn;
     //res.locals.csrf_token=req.csrfToken();
+    res.locals.user=req.session.user;
     next();
 })
 

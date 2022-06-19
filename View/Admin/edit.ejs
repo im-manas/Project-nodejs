@@ -11,7 +11,7 @@
         <h5 class="card-title">Edit Products</h5>
       </div>
 
-      <form action="/edit" method="POST">
+      <form action="/edit" method="POST" enctype="multipart/form-data">
 
         <div class=" mb-3 container">
           <div class="mb-3">
@@ -32,6 +32,8 @@
        <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Product image</label>
         <input type="file" class="form-control" name="p_image" required>
+        <input type="hidden" name="image" value="<%=data.p_image%>">
+        <img src="../../<%=data.p_image%>" style="width: 200px;">
        </div>
            <input type="hidden" name="id" value="<%=data._id%>">
            <input type="submit" class="btn btn-outline-info" value="Save" style="width: 7rem; margin-left: 35%;">

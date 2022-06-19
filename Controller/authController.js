@@ -1,8 +1,19 @@
 const authModel=require('../Model/auth')
 const bcrypt=require('bcryptjs')
 const bodyParser=require('body-parser')
-const { check, validationResult } = require('express-validator')
-const urlencodedParser = bodyParser.urlencoded({extended: false})
+const nodemailer = require('nodemailer')
+
+const transporter = nodemailer.createTransport({
+    host:'smtp',
+    port:1200,
+    secure:false,
+    requireTLS: true,
+    service: 'gmail',
+    auth: {
+      user: 'immanasp@gmail.com',
+      pass: 'yulcftaunryyuxro'
+    }
+  });
 
 exports.getReg=(req,res)=>{
     let messege=req.flash('error')
@@ -43,6 +54,25 @@ exports.postregDetails=(req,res)=>{
             return userData.save()
         }).then(result=>{
             console.log("reg done");
+
+            var mailOptions = {
+                from: 'immanasp@gmail.com',
+                to: email,
+                subject: 'Sending Email using Node.js to confirm registration',
+                text: 'You have succefully registered.'
+              };
+              transporter.sendMail(mailOptions, function(error, info)
+                     {
+                        if (error) 
+                        {
+                          console.log("Error to send mail:", error);
+                        }
+                         else 
+                         {
+                          console.log('Email sent: ' , info.response);
+                        }
+                    });
+
             return res.redirect('/login')
         }).catch(err=>{
             console.log("err to reg",err);
@@ -113,8 +143,7 @@ exports.postLogin=(req,res)=>{
                     console.log("logged in");
                     return res.redirect('/userproduct')
                 })
-            }
-            
+            } 
         }).catch(err =>{
             console.log(err);
             res.redirect('/login')
@@ -128,4 +157,83 @@ exports.getLogout=(req,res)=>{
   req.session.destroy()
   console.log("successfully logout",req.session);
   res.redirect('/login');
+}
+
+exports.getForgetPassword=(req,res)=>{
+    res.render('Auth/forget',{
+        title:"forget Password",
+        path:'/forgetPass'
+    })
+}
+
+exports.postForget=(req,res)=>{
+    const email = req.body.u_email;
+    authModel.findOne({email:email}).then((userValue)=>{
+        if(!userValue)
+        {
+            console.log("invalid email");
+            return res.redirect('/forgetPass')
+        }else{
+            const user_id = userValue._id;
+            const url = "http://localhost:3008/setNewPassword/"+user_id;
+            console.log(url);
+            const textForget = "click here->";
+
+            var mailOptions={
+                from : 'immanasp@gmail.com',
+                to: email,
+                subject:"Forget Password",
+                text:'Set new password',
+                html: textForget.concat(url)
+            };
+            transporter.sendMail(mailOptions, function(err,info){
+                if(err){
+                    console.log("error to send mail",err);
+                }else{
+                    console.log('mail sent' +info.responce);
+                }
+            });
+            
+        }
+    }).catch((err)=>
+    {
+        console.log(err);
+    })
+    res.end();
+}
+
+exports.getSetNewPassword=(req,res)=>{
+    const user_id=req.params.id;
+    console.log(user_id);
+    res.render('Auth/setpass',{
+        title:"Set new password",
+        user_id:user_id,
+        path:'/SetNewPassword'
+    })
+}
+
+exports.SetNewPassword=(req,res)=>{
+    const user_id = req.body.user_id;
+    const password = req.body.n_password;
+    console.log("collected: ",user_id, password);
+    authModel.findById(user_id).then(user=>{
+        let new_email = user.email;
+        let new_fname = user.f_name;
+        let new_lname = user.l_name
+        console.log("collected: ",user_id, password, new_email, new_fname, new_lname);
+        return bcrypt.hash(password,12).then((hashPassword)=>{
+            user.password=hashPassword;
+            user.email = new_email;
+            user.f_name = new_fname;
+            user.l_name = new_lname;
+            return user.save().then((result)=>{
+                console.log("password changed");
+            return res.redirect('/login')
+            }).catch(err=>{
+                console.log(err);
+            })
+        }).catch(err=>{
+            console.log(err);
+        })
+    })
 }

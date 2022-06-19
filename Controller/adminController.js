@@ -42,15 +42,23 @@ exports.postEditData=(req,res)=>{
     let title=req.body.title;
     let price=req.body.price;
     let description=req.body.description;
-    //let p_image=req.file
-    //let p_imageUrl=p_image.path
+    let p_image=req.file;
     let id=req.body.id;
-
+    let image=req.body.image;
+    let image_url;
+    if(p_image===undefined)
+    {
+        image_url=image
+    }else{
+        image_url=p_image.path
+    }
+    
+console.log(p_image);
     ProductModel.findById(id).then(updatedData=>{
         updatedData.title=title
         updatedData.price=price
         updatedData.description=description
-        // updatedData.p_image=p_imageUrl
+        updatedData.p_image=image_url;
         return updatedData.save()
         .then(results=>{
             console.log("Product is saved");

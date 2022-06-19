@@ -1,0 +1,3 @@
+packege-lock.json :- it provides version information for all packeges installed into node modules.
+packege.json :- it configars npm packege Dependencies that are avalable to all projects in the work place.
+node-modules :- it is a folder that contains the third party packeges.
